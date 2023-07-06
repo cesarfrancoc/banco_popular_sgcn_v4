@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="../../index.css">
+<link rel="stylesheet" href="../../cjs/jquery.mCustomScrollbar.css" />
+<link href="../../fonts/font-awesome/css/all.css" rel="stylesheet">
+<script src="../../cjs/easeljs-0.8.2.min.js"></script> 
+<script src="../../cjs/tweenjs-0.6.2.min.js"></script> 
+<script src="../../cjs/preloadjs-0.6.2.min.js"></script> 
+<script src="../../cjs/soundjs-0.6.2.min.js"></script> 
+<script src="page.js"></script> 
+<script src="../../principal.js"></script> 
+<script src="../../cjs/jquery.min.js"></script> 
+<script src="../../cjs/jquery.imagemapster.js"></script> 
+<script src="../../cjs/jquery.mCustomScrollbar.concat.min.js"></script> 
+<script src="../../cjs/jquery-ui.min.js"></script> 
+<script src="../../cjs/jquery.ui.touch-punch.min.js"></script> 
+<script>
+	
+	
+var canvas, stage, exportRoot;
+function init() {
+	canvas = document.getElementById("canvas");
+	var loader = new createjs.LoadQueue(false);
+	loader.installPlugin(createjs.Sound);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.addEventListener("progress", handleProgress);
+	loader.loadManifest(lib.properties.manifest);
+  $.getJSON("../../images/animaciones_atlas_.json", function(json) {
+      frames_animacion = json.frames;
+    });
+}
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+function playSound(id, loop) {
+	createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+}
+ancho_linea = 0;
+alto_linea = 10;
+max_ancho = 450;
+function handleProgress(evt) {
+	stage = new createjs.Stage(canvas);
+	var bordePadding = 2;
+    var borde = new createjs.Shape;
+    borde.graphics.beginFill("rgba(131,120,111,0.4)").drawRect(0, 0, max_ancho + bordePadding*2, alto_linea).endFill();
+    var linea_carga = new createjs.Shape();
+	linea_carga.graphics.beginFill("#009DDF").drawRect(0 + bordePadding,0 + bordePadding, ancho_linea, alto_linea - bordePadding*2).endFill();
+    progreso = Math.round(evt.loaded * max_ancho);
+	ancho_linea = progreso;
+	contenedor = new createjs.Container();
+	contenedor.x = 1240/2 - max_ancho/2;
+	contenedor.y = 495*4/5 - alto_linea/2;
+	contenedor.addChild(borde, linea_carga);
+	//stage.addChild(contenedor);
+	stage.update();
+}
+function handleComplete(evt) {
+	var queue = evt.target;
+	stage = new createjs.Stage(canvas);
+	createjs.Ticker.addEventListener("tick", stage);
+	/////Variables
+	sin_personaje = true;
+	globo_personaje = "Empecemos identificando la importancia del programa de bloqueo y etiquetado, las actividades en las que se debe aplicar y algunos conceptos asociados.";
+	pausas_audio = [[0,16406],[977,19347]];
+
+  coord_flecha_next = [900,100];
+
+  contenidos();	
+}
+</script>
+</head>
+<body onload="init();">
+<canvas id="canvas" width="1260" height="550"></canvas>
+<div id="instruccion_circulos" class="instruccion_circulos"> </div>
+<div class="c_principal c_3_6">
+  <h1 data-posabsbtn="170,320">Sistema de Gestión de Continuidad de Negocio</h1>
+  <div class="item_c">
+    <div class="txt_c" style="width: 350px;">
+      <div class="cont_audio">
+        <div class="audio_c">
+          <audio controls style="margin-top: 15px;">
+            <source src="sounds/diap4a.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag. </audio>
+        </div>
+        <div class="subs_audio"> El Banco Popular ha implementado un Sistema de Gestión de Continuidad de Negocio (SGCN), con el fin de asegurar la ejecución de las operaciones en sus actividades esenciales y críticas en caso de una interrupción del negocio.<br>
+          <br>
+          El SGCN se encuentra conformado por los siguientes planes: </div>
+      </div>
+    </div>
+  </div>
+  <div class="item_c">
+    <div class="infografia"> <img src="images/diap4.png" height="330">
+      <map data-restriccion="no">
+        <area id="zona_sensible0" shape="circ" coords="290,255,100">
+        <area id="zona_sensible1" shape="circ" coords="80,87,70">
+        <area id="zona_sensible2" shape="circ" coords="500,88,70">
+        <area id="zona_sensible3" shape="circ" coords="80,423,70">
+        <area id="zona_sensible4" shape="circ" coords="500,422,70">
+      </map>
+    </div>
+  </div>
+</div>
+<div class="c_principal c_3">
+  <h1 data-posabsbtn="170,320">Resiliencia Organizacional en Continuidad de Negocio</h1>
+  <div class="item_c">
+    <div class="txt_c" >
+      <div class="cont_audio">
+        <div class="audio_c">
+          <audio controls style="margin-top: 15px;">
+            <source src="sounds/diap6a.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag. </audio>
+        </div>
+        <div class="subs_audio">
+          <div class="resaltado_especial">Contar con un Plan de Continuidad de Negocio y fortalecer la Resiliencia Organizacional contribuye significativamente a <span class="negrilla">superar las crisis</span> generadas por eventos inesperados como crisis económicas, emergencias sanitarias, conflictos sociales y/o políticos. Estos son elementos diferenciadores que incrementan la <span class="negrilla">ventaja competitiva</span> y el <span class="negrilla">nivel de resistencia.</span> </div>
+          <div>Para que las organizaciones sean resilientes y cuenten con un adecuado Sistema de Gestión de Continuidad se deben implementar: </div>
+        </div>
+      </div>
+    </div>
+    <div class="infografia"> <img src="images/diap6.png" height="100">
+      <map data-restriccion="no">
+        <area id="zona_sensible5" shape="circ" coords="69,74,70">
+        <area id="zona_sensible6" shape="circ" coords="244,74,70">
+        <area id="zona_sensible7" shape="circ" coords="416,74,70">
+        <area id="zona_sensible8" shape="circ" coords="591,74,70">
+        <area id="zona_sensible9" shape="circ" coords="764,74,70">
+      </map>
+    </div>
+  </div>
+</div>
+<div class="mas_personaje c_1">
+  <h1></h1>
+  <div class="item_c"></div>
+</div>
+<div class="c_principal c_2_6">
+  <h1 data-posabsbtn="700,220">Política de Continuidad de Negocio</h1>
+  <div class="item_c">
+    <h1></h1>
+  </div>
+  <div class="item_c" style="margin: 0 30px;">
+    <div class="txt_interno c_1">
+      <h1>Inicio</h1>
+      <div class="item_c">
+        <table style="text-align: center; margin: auto;">
+          <tr>
+            <td><img src="images/diap8.png" height="200"></td>
+            <td style="width: 440px;"><div class="cont_audio">
+                <div class="audio_c">
+                  <audio controls style="margin-top: 15px;">
+                    <source src="sounds/diap8.mp3" type="audio/mpeg">
+                    Your browser does not support the audio tag. </audio>
+                </div>
+                <div class="subs_audio">La Política Corporativa de Continuidad de Negocio fue definida con la participación activa del Banco Popular, y tiene como objetivo establecer los lineamientos generales para la <span class="negrilla">adecuada implementación y mantenimiento del SGCN</span> en Grupo Aval y sus Entidades Subordinadas. </div>
+              </div></td>
+          </tr>
+        </table>
+        <div class='instruccion_interna'><span class='indica_instclic'></span>Pulsa los botones para conocer el contenido de esta Política.</div>
+      </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Introducción</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap9.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio">La Política de Continuidad de Negocio describe la importancia de la Gestión de Riesgos de Continuidad de Negocio como un pilar fundamental del objeto social del Banco y la responsabilidad como Entidad sometida a inspección y vigilancia por parte de la Superintendencia Financiera de Colombia.</div>
+        </div>
+      </div>
+      <div class="item_c">
+        <video style="height: 250px;" autoplay loop muted>
+          <source src="images/diap9gif.mp4" type="video/mp4">
+          Your browser does not support the video tag. </video>
+      </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Objetivos</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap10.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio">El objetivo principal de la Política de Continuidad de Negocio es definir los lineamientos generales, para la <span class="negrilla">adecuada implementación y mantenimiento</span> del SGCN del Banco Popular, con el fin de asegurar la ejecución de las operaciones en sus actividades esenciales y críticas en caso de una interrupción del negocio. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap10.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Alcance</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap11.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio">La Política es el marco de gobierno del SGCN y se constituye en una herramienta de consulta la cual deben cumplir tanto empleados directos como trabajadores en misión. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap11.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Declaración de Compromiso</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap12.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Describe el compromiso que adquiere el Banco ante sus grupos de interés, los cuales se pueden ver comprometidos ante incidentes, emergencias, desastres y crisis.</div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap12.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1">
+      <h1>Lineamientos Generales </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap13a.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio">Los lineamientos generales incluidos en la Política de Continuidad de Negocio son: </div>
+        </div>
+        <div class="infografia"> <img src="images/diap13.png" height="250">
+          <p></p>
+          <map data-restriccion="no">
+            <area id="zona_sensible10" shape="circ" coords="67,71,70">
+            <area id="zona_sensible11" shape="circ" coords="244,71,70">
+            <area id="zona_sensible12" shape="circ" coords="414,71,70">
+            <area id="zona_sensible13" shape="circ" coords="587,71,70">
+            <area id="zona_sensible14" shape="circ" coords="763,71,70">
+            <area id="zona_sensible15" shape="circ" coords="159,224,70">
+            <area id="zona_sensible16" shape="circ" coords="332,224,70">
+            <area id="zona_sensible17" shape="circ" coords="502,224,70">
+            <area id="zona_sensible18" shape="circ" coords="676,224,70">
+            <area id="zona_sensible19" shape="circ" coords="159,381,70">
+            <area id="zona_sensible20" shape="circ" coords="332,381,70">
+            <area id="zona_sensible21" shape="circ" coords="502,381,70">
+            <area id="zona_sensible22" shape="circ" coords="676,381,70">
+          </map>
+        </div>
+      </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Estructura de Gobierno</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap14a.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"></div>
+        </div>
+        <div class="instruccion_interna">Pasa el mouse sobre los textos resaltados</div>
+        <div class="resaltado_especial">La Política de Continuidad de Negocio incluye la descripción de roles y responsabilidades de Líneas de Defensa Frente a la Gestión de Riesgos, Junta Directiva, <span class="negrilla_sensible" id="zona_sensible23">Comités</span>, <span class="negrilla_sensible" id="zona_sensible24">Gerencias</span>, <span class="negrilla_sensible" id="zona_sensible25">Direcciones</span> y Contraloría Interna. </div>
+      </div>
+      <div class="item_c"> <img src="images/diap14.png" height="300"> </div>
+    </div>
+  </div>
+</div>
+<div class="c_principal c_2_6">
+  <h1 data-posabsbtn="700,220">Escenarios de Riesgo para la posible activación del SGCN</h1>
+  <div class="item_c">
+    <h1></h1>
+  </div>
+  <div class="item_c" style="margin: 0 30px;">
+    <div class="txt_interno c_1">
+      <h1>Inicio</h1>
+      <div class="item_c">
+        <div class='instruccion_interna'><span class='indica_instclic'></span>Pulsa los botones para conocer los potenciales escenarios que pueden conllevar a un incidente o crisis.</div>
+      </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Vinculación con procesos judiciales</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap17.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio">Vinculación del Banco con personas o entidades cuestionadas por la justicia, por temas relacionados con lavado de activos, financiación del terrorismo, narcotráfico u otros procesos jurídicos que puedan afectar la imagen del Banco.</div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap17.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Continuidad de los proveedores críticos </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap18.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Incidentes relacionados con los proveedores críticos que afectan el normal desarrollo en la operación de los procesos del Banco. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap18.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1> Incumplimiento de normatividad y leyes </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap19.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Incumplimiento de regulación o normatividad colombiana, cuyas sanciones lleven al cierre de la operación. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap19.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Seguridad de los clientes </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap20.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Incidentes relacionados con la seguridad y protección que brinda el Banco a sus clientes que por su magnitud generen impacto a nivel nacional. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap20.png" height="150"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1> Daño / afectación a instalaciones físicas </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap21.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Eventos que impiden el acceso o causan daños físicos a instalaciones del Banco, afectando su uso y disponibilidad. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap21.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1> Lesiones físicas a las personas </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap22.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Incidentes que involucran lesiones físicas o traumáticas a una o varias personas dentro de las instalaciones del Banco que afecten la operación o la imagen del Banco frente a la opinión pública. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap22.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1> Cese laboral </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap23.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Incidentes relacionados con actividades sindicales, cese de labores o huelga. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap23.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1> Eventos externos </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap24.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Eventos externos que puedan afectar el normal desarrollo de la operación del Banco, por ejemplo: desastres naturales, alteración del orden público y clima, entre otros. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap24.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Información falsa, nociva o perjudicial </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap25.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Información falsa, nociva y perjudicial en contra del Banco, con circulación y propagación a través de diferentes medios, y proveniente de fuentes desconocidas o de dudosa procedencia. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap25.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1> Incidentes tecnológicos </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap26.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Incidentes en la tecnología del Banco que imposibilitan su uso por un periodo superior a 4 horas continuas (previsibles o no), generando interrupción en las grandes ciudades o incremento en el número de reclamos. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap26.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Seguridad de la información - Ciberseguridad </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap27.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Fraudes o actividades internas y/o manejo de información privilegiada que afecten el patrimonio del Banco. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap27.png" height="300"> </div>
+    </div>
+    <div class="txt_interno c_1_1">
+      <h1>Incidentes relacionados con filiales </h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap28.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"> Situaciones de crisis en las que se vean involucradas las filiales y que afecten la imagen del Banco. </div>
+        </div>
+      </div>
+      <div class="item_c"> <img src="images/diap28.png" height="300"> </div>
+    </div>
+  </div>
+</div>
+<div class="mas_personaje c_1">
+  <h1></h1>
+  <div class="item_c"></div>
+</div>
+<div class="c_principal c_1">
+  <h1 data-posabsbtn="170,320">Estrategias de Recuperación de Procesos</h1>
+  <div class="item_c">
+    <div class="cont_audio">
+      <div class="audio_c">
+        <audio controls style="margin-top: 15px;">
+          <source src="sounds/diap30a.mp3" type="audio/mpeg">
+          Your browser does not support the audio tag. </audio>
+      </div>
+      <div class="subs_audio">En Banco Popular contamos con un conjunto de actividades que permiten mantener o recuperar la continuidad de una operación, proceso o tecnología, a pesar de presentarse eventos de falla, interrupción o desastre. </div>
+    </div>
+    <div class="instruccion_interna">Pulsa sobre los íconos y textos resaltados.</div>
+    <table style="text-align: center; margin: auto;">
+      <tr>
+        <td><div class="infografia"> <img src="images/diap30a.png" height="270">
+            <p></p>
+            <map data-restriccion="no">
+              <area id="zona_sensible26" shape="circ" coords="119,98,80">
+              <area id="zona_sensible27" shape="circ" coords="341,98,80">
+              <area id="zona_sensible28" shape="circ" coords="566,98,80">
+              <area id="zona_sensible29" shape="circ" coords="789,98,80">
+              <area id="zona_sensible30" shape="circ" coords="1012,98,80">
+              <area id="zona_sensible31" shape="rect" coords="443,213,698,284">
+            </map>
+          </div></td>
+        <td style="width: 250px;"><div id="zona_sensible32" class="negrilla_sensible">
+            <p><i class="fad fa-comment-exclamation"></i></p>
+            <p>Dato de interés</p>
+          </div></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="c_principal c_1-1">
+  <h1  data-posabsbtn="700,220">Actividad</h1>
+  <div class="item_c">
+    <div class="txt_c">
+      <table style="text-align: center; margin: auto; width: 800px;">
+        <td><div class="cont_audio">
+              <div class="audio_c">
+                <audio controls style="margin-top: 15px;">
+                  <source src="sounds/diap32.mp3" type="audio/mpeg">
+                  Your browser does not support the audio tag. </audio>
+              </div>
+              <div class="subs_audio">
+                <div>Ha llegado el momento de detener a Gerard, y así recuperar la operación del Banco Popular y minimizar los impactos.</div>
+                <div>Pulsa el botón "Ir a las preguntas" para resolver algunas actividades.</div>
+              </div>
+            </div></td>
+          <td style="width: 240px;"><img src="images/diap32.png" height="300"></td>
+      </table>
+    </div>
+  </div>
+  <div class="item_c">
+    <div class="boton_siguiente">
+      <div id="txt_btnsig2">IR A LAS PREGUNTAS </div>
+    </div>
+  </div>
+</div>
+<div id="pop0" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Plan de administración de crisis </span><br>
+  <br>
+  <span class="negrilla">Objetivo:</span> Establecer los protocolos y/o procedimientos que permitan la activación y escalamiento de una crisis o incidente que afecte o pueda afectar la reputación, imagen u operación del negocio.</div>
+<div id="pop1" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Plan de comunicaciones corporativas </span><br>
+  <br>
+  <span class="negrilla">Objetivo:</span> Definir los lineamientos y procedimientos que utilizará el negocio para comunicar interna y/o externamente incidentes o eventos que puedan generar una crisis y afectar directamente a la Entidad. </div>
+<div id="pop2" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Planes de recuperación de procesos</span><br>
+  <br>
+  <span class="negrilla">Objetivo:</span> Definir las estrategias y procedimientos que permitan mantener la continuidad de los servicios y procesos prioritarios en caso de la ocurrencia de un evento de desastre o interrupción.</div>
+<div id="pop3" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4e.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Plan de emergencias</span><br>
+  <br>
+  <span class="negrilla">Objetivo:</span> Minimizar las lesiones y pérdidas de vidas humanas, y protección de las instalaciones. </div>
+<div id="pop4" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4f.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Plan de recuperación tecnológica</span><br>
+  <br>
+  <span class="negrilla">Objetivo:</span> Establecer las estrategias y procedimientos que permitan mantener la continuidad de la plataforma tecnológica. </div>
+<div id="pop5" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap6b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Esquemas de gobierno definidos con sus roles y responsabilidades. </div>
+<div id="pop6" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap6c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Comunicaciones ágiles, asertivas y eficientes. </div>
+<div id="pop7" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap6d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Enfoque holístico de la Gestión de Riesgos. </div>
+<div id="pop8" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap6e.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Desarrollo de competencias en el personal, tales como flexibilidad y tolerancia al estrés. </div>
+<div id="pop9" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap6f.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Estrategias de innovación y métodos de aprendizaje. </div>
+<div id="pop10" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Lineamientos Banco Popular </span><br>
+  <br>
+  Reconociendo la importancia del SGCN, el Banco define, implementa, prueba y mantiene el proceso de Continuidad de Negocio, a través de: Prevención y atención de emergencias, Administración de escenarios de crisis, Comunicación en crisis, Planes de contingencia y Retorno a la Operación Normal. </div>
+<div id="pop11" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Gestión de Riesgos </span><br>
+  <br>
+  Gestionar riesgos de indisponibilidad de: Infraestructura de TI, Talento Humano, Infraestructura Física y Proveedores Críticos. </div>
+<div id="pop12" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Análisis de Impacto al Negocio (BIA)</span><br>
+  <br>
+  Identificar los productos, servicios y procesos críticos a través de la metodología BIA. </div>
+<div id="pop13" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13e.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Estrategias de Respuesta </span><br>
+  <br>
+  Documentar a través de manuales y procedimientos las estrategias de continuidad, las cuales deben cumplir las fases de respuesta y recuperación ante posibles indisponibilidades. </div>
+<div id="pop14" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13f.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Plan de Gestión de Crisis </span><br>
+  <br>
+  Fortalecer la cultura de Continuidad de Negocio al interior del Banco para que todo el personal entienda y conozca su rol en un evento de crisis. </div>
+<div id="pop15" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13g.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Plan de Emergencias </span><br>
+  <br>
+  Condiciones y procedimientos que prevengan situaciones que pongan en peligro la integridad del Talento Humano. </div>
+<div id="pop16" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13h.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Plan de Recuperación de Tecnología – DRP</span><br>
+  <br>
+  Contar con el Plan de Recuperación de Tecnología – DRP debidamente establecido y documentado, con la asignación de roles y responsabilidades para su administración, gestión y operación. </div>
+<div id="pop17" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13i.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Capacitación y Sensibilización </span><br>
+  <br>
+  Mantener vigente un programa de creación y mejoramiento de la cultura de Continuidad de Negocio. </div>
+<div id="pop18" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13j.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Gestión de Riesgos de Proveedores Críticos</span><br>
+  <br>
+  Controlar y realizar seguimiento a los planes de continuidad de terceros críticos. </div>
+<div id="pop19" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13k.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Pruebas y Ejercicios </span><br>
+  <br>
+  Realizar ejercicios y pruebas de los procedimientos de Continuidad de Negocio, asegurando su consistencia con los objetivos de negocio. </div>
+<div id="pop20" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13l.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Herramienta de Gestión de Continuidad de Negocio</span><br>
+  <br>
+  Adoptar una herramienta tecnológica que permita gestionar las actividades del SGCN, preferiblemente que sea una herramienta a nivel corporativo. </div>
+<div id="pop21" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13m.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Información y Comunicación</span><br>
+  <br>
+  Comunicar los resultados de gestión del SGCN a: Junta Directiva, Comité de Auditoría y Comité de Continuidad de Negocio. </div>
+<div id="pop22" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13n.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Monitoreo del SGCN</span><br>
+  <br>
+  Realizar seguimiento y monitoreo a los componentes del SGCN con el fin de identificar brechas en su ejecución y operación. </div>
+<div id="pop23" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap14b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <table class="lista_vinetas">
+    <tr>
+      <td class="vineta"></td>
+      <td> Comité de Riesgos Consolidados </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Comité de Riesgos No Financieros </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Comité de Auditoría </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Comité Corporativo Continuidad de Negocio </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Comité de Continuidad de Negocio del Banco </td>
+    </tr>
+  </table>
+</div>
+<div id="pop24" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap14c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <table class="lista_vinetas">
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerente Integral de Riesgos </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerente de Riesgos Operacionales </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Vicepresidente de Tecnología </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerencia TI Servicios Web </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerencia de Experiencia de Marca </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerencia del Cuidado y Desarrollo del TH </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerencia de Atención y Servicio al TH </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerencia de Abastecimiento Estratégico </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerente de Seguridad Bancaria </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Gerentes Dueños de Proceso </td>
+    </tr>
+  </table>
+</div>
+<div id="pop25" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap14d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <table class="lista_vinetas">
+    <tr>
+      <td class="vineta"></td>
+      <td> Director de Continuidad de Negocio </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Director de Confiabilidad Operativa de TI </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Dirección de Seguridad y Salud en el Trabajo </td>
+    </tr>
+    <tr>
+      <td class="vineta"></td>
+      <td> Director de Infraestructura </td>
+    </tr>
+  </table>
+</div>
+<div id="pop26" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap30b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Centro de Operación en Contingencia </span><br>
+  <br>
+  Término genérico que normalmente se refiere a una instalación alterna, la cual se puede usar en caso de un evento que inhabilite las instalaciones principales donde operan los procesos o servicios. </div>
+<div id="pop27" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap30c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Virtual Private Network (VPN)</span><br>
+  <br>
+  Trabajo en casa a través de conexión segura VPN. </div>
+<div id="pop28" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap30d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <table style="text-align: center; margin: auto;">
+    <tr>
+      <td><span class="negrilla">Virtualización de Aplicaciones</span><br>
+        <br>
+        Citrix es una plataforma tecnológica de integración de aplicaciones (críticas para el negocio) que permite acceder de manera segura y confiable a través de dispositivos (móviles, tabletas y portátiles) en cualquier momento y lugar.</td>
+      <td><img src="images/diap30b.png" height="80"></td>
+    </tr>
+  </table>
+</div>
+<div id="pop29" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap30e.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <table style="text-align: center; margin: auto;">
+    <tr>
+      <td><span class="negrilla">Realizar la operación crítica a través de las Filiales.</span><br>
+        <br>
+        Fiduciaria Popular </td>
+      <td><img src="images/diap30c.png" height="80"></td>
+    </tr>
+  </table>
+</div>
+<div id="pop30" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap30f.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  <span class="negrilla">Servidor remoto</span><br>
+  <br>
+  Estrategia de recuperación que aplica únicamente para la Red de oficinas. </div>
+<div id="pop31" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap30g.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  De manera transversal, estas estrategias se articulan con el Plan de Recuperación de Tecnología (DRP) a través del Centro Alterno de Procesamiento de Datos (CAPD). </div>
+<div id="pop32" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap30h.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Como buena práctica, los subprocesos críticos operan con estas estrategias como mínimo una vez al mes y de manera permanente durante todo el año.</div>
+<div id="pop33" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap30.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  El ofrecimiento de <span class="negrilla">beneficios a clientes</span> debe estar soportado y documentado en un análisis de relación costo/beneficio, de cara al portafolio completo del cliente. Si el retorno realizado con un cliente se desfasa por debajo de la media esperada, se debe contar con autorización expresa de la instancia superior que corresponda. </div>
+<div id="pop34" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Está prohibido que el Banco Popular y sus filiales realicen <span class="negrilla">comodatos</span> a clientes o proveedores. Si por alguna consideración excepcional contractual se hace necesario otorgar bienes bajo esta figura, todos, sin excepción y de manera individual, deben ser previamente autorizados por la Gerencia de Cumplimiento – Dirección ABAC, basados en documentación robusta de cada operación suministrada por la primera línea de defensa a cargo de dicha transacción. </div>
+</body>
+</html>
